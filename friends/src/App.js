@@ -4,12 +4,7 @@ import { BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom';
 import Login from './components/Login';
 import FriendsList from './components/FriendsList';
 import PrivateRoute from './components/PrivateRoute';
-
-
-// const Login = ()=> {
-//   return (<h2>Login</h2>)
-// }
-
+import AddFriendForm from './components/AddFriendForm';
 
 function App() {
 
@@ -18,16 +13,17 @@ function App() {
   return (
     <Router>
     <div className="App">
-      <h2>Client Auth Project</h2>
+      <h2>FRIENDS</h2>
+      <Link to='/friends/add-new'> Add Friend </Link>
+      <Link to='/friends'> Back to Friends </Link>
 
       <li>
         <Link to='/login'>Login</Link>
       </li>
-      <li>
-        {isLoggedIn && <Link to='/protected'> Protected Page </Link>}
-      </li>
+    
       <Switch>
-        <PrivateRoute exact path='/protected' component={FriendsList} />
+        <PrivateRoute exact path='/friends/add-new' component={AddFriendForm} />
+        <PrivateRoute exact path='/friends' component={FriendsList} />
         <Route path='/login' component={Login} />
 
       </Switch>
